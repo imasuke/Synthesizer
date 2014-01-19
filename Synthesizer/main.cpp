@@ -12,7 +12,7 @@ int main(void){
 	std::vector<double> wave;
 
 	//シンセサイザの設定
-	SoundSetting setting;
+	SynthSetting setting;
 	setting.bits_per_sample = 16;
 	setting.samples_per_sec = 44100;
 	//シンセサイザ
@@ -20,6 +20,11 @@ int main(void){
 
 	//シンセサイザのパラメータ
 	SynthParam param;
+	param.carrier_amp = 0.5;
+	param.carrier_freq = 1040;
+	param.mod_index = 10.0;
+	param.mod_freq = 300;
+	param.time = 5.0;
 
 	//シンセサイズ
 	synth.synthesize(&wave, param);

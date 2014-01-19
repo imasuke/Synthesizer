@@ -2,6 +2,7 @@
 
 #include <map>
 #include <vector>
+#include <cstring>
 
 #include "WaveFileManager.h"
 #include "wavelib.h"
@@ -59,6 +60,7 @@ void WaveFileManager::save_sound(const vector<double>& sound, int song_id, strin
 	short w_sample; //作業用変数
 
 	//dataチャンクの作成
+	strcpy_s(save_data.ID, "data");
 	save_data.size_of_sounds = sound.size()*2;
 	save_data.sounds = new unsigned char[save_data.size_of_sounds];
 	for(int i=0;i<sound.size();i++){
@@ -86,7 +88,11 @@ void WaveFileManager::save_sound(const vector<double>& sound, int song_id, strin
 			RIFF save_riff;
 			fmt save_fmt;
 
+			strcpy_s(save_riff.ID, "RIFF");
+			strcpy_s(save_riff.TYPE, "WAVE");
 			save_riff.SIZE = 36 + save_data.size_of_sounds; //36はヘッダサイズ
+			strcpy_s(save_fmt.ID, "fmt ");
+			save_fmt.TYPE = 1; //リニアPCM
 			save_fmt.SIZE = 16; //リニアPCMのfmtサイズ
 			save_fmt.Channel = head->channel;
 			save_fmt.SamplesPerSec = head->samples_per_sec;

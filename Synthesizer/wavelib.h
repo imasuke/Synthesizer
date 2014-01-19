@@ -8,13 +8,13 @@
 /* 型の定義 */
 /* RIFFチャンク */
 struct RIFF {
-    char ID[5] = "RIFF";         /* RIFFチャンクID("RIFF")   */
+    char ID[5];         /* RIFFチャンクID("RIFF")   */
     int SIZE;           /* RIFFチャンクサイズ[byte] */
-    char TYPE[5] = "WAVE";       /* RIFFの種類("WAVE")       */
+    char TYPE[5];       /* RIFFの種類("WAVE")       */
 };
 /* fmtチャンク */
 struct fmt {
-    char ID[5] = "fmt ";         /* fmtチャンクID("fmt ")    */
+    char ID[5];         /* fmtチャンクID("fmt ")    */
     int SIZE;           /* fmtチャンクサイズ[byte]  */
     int TYPE;           /* フォーマットタイプ       */
     int Channel;        /* チャンネル数             */
@@ -27,7 +27,7 @@ struct fmt {
 };
 /* dataチャンク */
 struct data {
-    char ID[5] = "data";          /* dataチャンクID("data")   */
+    char ID[5];          /* dataチャンクID("data")   */
     int size_of_sounds;  /* dataチャンクサイズ[byte] */
     unsigned char *sounds; /* 波形データへのポインタ */
 };

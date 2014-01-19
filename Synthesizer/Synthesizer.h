@@ -3,7 +3,7 @@
 #pragma once
 
 //合成音設定
-struct SoundSetting{
+struct SynthSetting{
 	//サンプルあたりのビット数
 	int bits_per_sample;
 	//サンプリングレート[Hz]
@@ -28,12 +28,16 @@ class Synthesizer{
 //メソッド
 public:
 	//コンストラクタ
-	Synthesizer(SoundSetting setting);
+	Synthesizer(SynthSetting setting);
 	//シンセサイズ
 	void synthesize(std::vector<double> *wave, SynthParam param);
 
 //メンバ変数
 private:
 	//合成音設定
-	SoundSetting *setting;
+	SynthSetting setting;
+	//8bitサンプル最大値
+	static const int EIGHT_BITS_MAX;
+	//16bitサンプル最大値
+	static const int SIXTEEN_BITS_MAX;
 };
