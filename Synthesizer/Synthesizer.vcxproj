@@ -64,6 +64,14 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="Synthesizer.cpp" />
+    <ClCompile Include="WaveFileManager.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Synthesizer.h" />
+    <ClInclude Include="WaveFileManager.h" />
+    <ClInclude Include="wavelib.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

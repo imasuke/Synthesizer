@@ -13,5 +13,33 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Synthesizer">
+      <UniqueIdentifier>{e7cacbf3-5a4c-4794-8b66-0bbf5f4e5678}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="WaveFileManager">
+      <UniqueIdentifier>{98d2de88-ee5a-4f49-972c-56318674cec1}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="main.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="Synthesizer.cpp">
+      <Filter>Synthesizer</Filter>
+    </ClCompile>
+    <ClCompile Include="WaveFileManager.cpp">
+      <Filter>WaveFileManager</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Synthesizer.h">
+      <Filter>Synthesizer</Filter>
+    </ClInclude>
+    <ClInclude Include="WaveFileManager.h">
+      <Filter>WaveFileManager</Filter>
+    </ClInclude>
+    <ClInclude Include="wavelib.h">
+      <Filter>WaveFileManager</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
