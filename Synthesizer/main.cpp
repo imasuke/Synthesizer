@@ -21,10 +21,14 @@ int main(void){
 	//シンセサイザのパラメータ
 	SynthParam param;
 	param.carrier_amp = 0.5;
-	param.carrier_freq = 1040;
-	param.mod_index = 10.0;
-	param.mod_freq = 300;
-	param.time = 5.0;
+	param.carrier_freq = 1000;
+	param.mod_index = 10;
+	param.mod_freq = 500;
+	param.time = 3.0;
+	param.attack = 0.2;
+	param.decay = 1.0;
+	param.sustain = 0.5;
+	param.release = 0.3;
 
 	//シンセサイズ
 	synth.synthesize(&wave, param);

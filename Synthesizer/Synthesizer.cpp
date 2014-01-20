@@ -43,11 +43,50 @@ void Synthesizer::synthesize(vector<double> *wave, SynthParam param){
 		break;
 	}
 
-	//波形の合成
+	//波形の生成
 	double arg, t;
 	for(int i=0;i<len;i++){
 		t = (double)i / setting.samples_per_sec;
-		arg = 2 * M_PI * param.carrier_freq * t + param.mod_index * sin(2*M_PI*param.mod_index*t); 
-		r_wave[i] = amp * sin(arg) + (setting.bits_per_sample == 8 ? 128 : 0);
+		arg = 2 * M_PI * param.carrier_freq * t + param.mod_index * sin(2*M_PI*param.mod_freq*t); 
+		r_wave[i] = amp * sin(arg);
+	}
+	//エンベロープをつける
+	generate_envelope(wave, param);
+	//8bitWav用の補正
+	if(setting.bits_per_sample == 8){
+		for(int i=0;i<len;i++){
+			r_wave[i] += 128;
+		}
+	}
+}
+
+//エンベロープジェネレータ
+void Synthesizer::generate_envelope(vector<double> *wave, SynthParam param){
+	vector<double> &r_wave = *wave;
+	int len = r_wave.size();
+
+	double env;
+	int attack_i = param.attack * setting.samples_per_sec;
+	int decay_i = (param.attack + param.decay) * setting.samples_per_sec;
+	int release_i = len - param.release * setting.samples_per_sec;
+
+	for(int i=0;i<len;i++){
+		//Attack
+		if(i <= attack_i){
+			env = (double)i / attack_i;
+		}
+		//Decay
+		else if(attack_i < i && i < decay_i){
+			env = 1.0 - (1.0 - param.sustain) / (decay_i - attack_i) * (i - attack_i);
+		}
+		//Release
+		else if(release_i < i){
+			env = param.sustain * (len - i) / (len - release_i);
+		}
+		//Sustain
+		else{
+			env = param.sustain;
+		}
+		r_wave[i] *= env;
 	}
 }
